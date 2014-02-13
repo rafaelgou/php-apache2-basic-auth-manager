@@ -2,7 +2,15 @@
 
 A really simple manager for .htaccess Basic Auth using .htpasswd and .htgroup files.
 
-# Install
+Original HtPasswd and HtGroup classes from 
+[Yang Yang](http://www.kavoir.com/2012/04/php-class-for-handling-htpasswd-and-htgroup-member-login-user-management.html)
+
+
+## TODO
+
+Editing users and groups
+
+## Install
 
 1) Clone the repository under a web:
 
@@ -67,6 +75,9 @@ Edit `.htaccess` using your favorite editor, and put the following content
 http://localhost/php-apache2-basic-auth-manager
 
 Use the user/password created above.
+
+
+
 
 
 
