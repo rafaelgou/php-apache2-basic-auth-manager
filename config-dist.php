@@ -1,8 +1,8 @@
 <?php
 
 // Setup Files
-$CONFIG['htpasswd']     = '/var/www/test/.htpasswd';
-$CONFIG['htgroup']      = '/var/www/test/.htgroup';
+$CONFIG['htpasswd']     = '/var/www/.htpasswd';
+$CONFIG['htgroup']      = '/var/www/.htgroup';
 
 // Admin Group - only part of this group can access the system
 $CONFIG['adminGroup']   = 'admin';

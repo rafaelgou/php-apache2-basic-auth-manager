@@ -6,10 +6,6 @@ Original HtPasswd and HtGroup classes from
 [Yang Yang](http://www.kavoir.com/2012/04/php-class-for-handling-htpasswd-and-htgroup-member-login-user-management.html)
 
 
-## TODO
-
-Editing users and groups
-
 ## Install
 
 1) Clone the repository under a web:
@@ -22,9 +18,9 @@ Considering you have a Apache Web Server running with ServerRoot= /var/www
 
 2) Configure the application
 
-   cd php-apache2-basic-auth-manager
-   cp config-dist.php config.php
-   chown -R www-data:www-data *
+    cd php-apache2-basic-auth-manager
+    cp config-dist.php config.php
+    chown -R www-data:www-data *
 
 (or whatever user your webserver is running under).
 
