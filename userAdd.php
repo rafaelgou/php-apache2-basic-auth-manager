@@ -56,7 +56,7 @@ if (isset($_POST['username'])) {
                     <div class="form-group">
                         <label for="password" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">Password</label>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input type="text" class="form-control" id="password" name="password" placeholder="<?php echo $CONFIG['minPassword'] ?> characters">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo $CONFIG['minPassword'] ?> characters">
                         </div>
                     </div>
 

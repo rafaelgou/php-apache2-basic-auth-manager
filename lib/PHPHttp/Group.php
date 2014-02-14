@@ -3,22 +3,26 @@
 namespace PHPHttp;
 
 /**
+ * Class PHPHttp/Group
+ *
+ * @author Rafael Goulart <rafaelgou@gmail.com>
  * @see http://www.kavoir.com/2012/04/php-class-for-handling-htpasswd-and-htgroup-member-login-user-management.html
  */
 class Group {
     
     private $file = '';
-    
-    public function __construct($file) {
+
+    public function __construct($file)
+    {
         if (file_exists($file)) {
-            $this -> file = $file;
+            $this->file = $file;
         } else {
-            die($file." doesn't exist.");
-            return false;
+            throw new \Exception($file." doesn't exist.");
         }
     }
 
-    private function write($groups = array()) {
+    private function write($groups = array())
+    {
         $str = '';
         foreach ($groups as $group => $users) {
             $users_str = '';
@@ -30,12 +34,13 @@ class Group {
             }
             $str .= "$group: $users_str\n";
         }
-        file_put_contents($this -> file, $str);
+        file_put_contents($this->file, $str);
     }
     
-    private function read() {
+    private function read()
+    {
         $groups = array();
-        $groups_str = file($this -> file, FILE_IGNORE_NEW_LINES);
+        $groups_str = file($this->file, FILE_IGNORE_NEW_LINES);
         foreach ($groups_str as $group_str) {
             if (!empty($group_str)) {
                 $group_str_array = explode(': ', $group_str);
@@ -50,44 +55,81 @@ class Group {
         return $groups;
     }
     
-    public function getGroups() {
-        return $this -> read();
+    public function getGroups()
+    {
+        return $this->read();
     }
     
-    public function addUserToGroup($username = '', $group = '') {
-        if (!empty($username) && !empty($group)) {
-            $all = $this -> read();
-            if (isset($all[$group])) {
-                if (!in_array($username, $all[$group])) {
-                    $all[$group][] = $username;
-                }
-            } else {
-                $all[$group][] = $username;
-            }
-            $this -> write($all);
+    public function getGroup($group)
+    {
+        $all = $this->read();
+        if (isset($all[$group])) {
+            return $all[$group];
         } else {
             return false;
         }
     }
     
-    public function deleteUserFromGroup($username = '', $group = '') {
-        $all = $this -> read();
+    public function addUserToGroup($username, $group)
+    {
+        $all = $this->read();
+        if (isset($all[$group])) {
+            if (!in_array($username, $all[$group])) {
+                $all[$group][] = $username;
+            }
+        } else {
+            $all[$group][] = $username;
+        }
+        $this->write($all);
+    }
+
+    public function setUsersToGroup($group, $users)
+    {
+        $all = $this->read();
+        if (isset($all[$group])) {
+            $all[$group] = $users;
+
+        }
+
+        $this->write($all);
+    }
+
+    public function setGroupsToUser($username, $groups)
+    {
+        $all = $this->read();
+
+        foreach($all as $group => $users) {
+            $user_index = array_search($username, $all[$group]);
+            if ($user_index !== false) {
+                unset($all[$group][$user_index]);
+            }
+        }
+
+        foreach($groups as $group) {
+            $all[$group][] = $username;
+        }
+
+        $this->write($all);
+    }
+    
+    
+    public function deleteUserFromGroup($username, $group)
+    {
+        $all = $this->read();
         if (array_key_exists($group, $all)) {
             $user_index = array_search($username, $all[$group]);
             if ($user_index !== false) {
                 unset($all[$group][$user_index]);
-                //if (count($all[$group]) == 0) {
-                //    unset($all[$group]);
-                //}
-                $this -> write($all);
+                $this->write($all);
             }
         } else {
             return false;
         }
     }
 
-    public function getGroupsByUser($username = '') {
-        $all = $this -> read();
+    public function getGroupsByUser($username)
+    {
+        $all = $this->read();
         $user_groups = array();
         foreach ($all as $group => $users) {
             if (in_array($username, $users)) {
@@ -102,8 +144,9 @@ class Group {
         return in_array($group, $this->getGroupsByUser($username));
     }
 
-    public function groupExists($group = '') {
-        $all = $this -> read();
+    public function groupExists($group)
+    {
+        $all = $this->read();
         if (array_key_exists($group, $all)) {
             return true;
         } else {
@@ -111,25 +154,26 @@ class Group {
         }
     }
     
-    public function deleteGroup($group = '') {
-        $all = $this -> read();
+    public function deleteGroup($group)
+    {
+        $all = $this->read();
         if (array_key_exists($group, $all)) {
             unset($all[$group]);
-            $this -> write($all);
+            $this->write($all);
         } else {
             return false;
         }
     }
 
-    public function addGroup($group = '') {
-        $all = $this -> read();
+    public function addGroup($group)
+    {
+        $all = $this->read();
         if (!array_key_exists($group, $all)) {
             $all[$group] = array();
-            $this -> write($all);
+            $this->write($all);
         } else {
             return false;
         }
     }
-
 
 }

@@ -5,7 +5,7 @@
         <p class="author">
             PHP Apache2 Basic Auth Manager © 2014 <span><a href="http://tech.rgou.net">Rafael Goulart</a></span> 
             | Licensed under <a href="license.php">GPL3</a> 
-            | <a href="http://tech.rgou.net">Fork on <i class="fa fa-github"></i> Github</a>
+            | <a href="https://github.com/rafaelgou/php-apache2-basic-auth-manager">Fork on <i class="fa fa-github"></i> Github</a>
         </p>
       </div>
     </div>
