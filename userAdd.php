@@ -16,7 +16,7 @@ if (isset($_POST['username'])) {
 
     } else {
 
-        $passwdHandler->addUser($_POST['username'], $CONFIG['minPassword']);
+        $passwdHandler->addUser($_POST['username'], $_POST['password']);
 
         if (isset($_POST['groups'])) {
 
