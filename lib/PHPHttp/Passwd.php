@@ -11,12 +11,9 @@ namespace PHPHttp;
 class Passwd {
     
     private $file = '';
-    private $salt = '';
     
     public function __construct($file)
     {
-
-        $this->salt = $salt = uniqid(mt_rand(), true);
 
         if (file_exists($file)) {
             $this->file = $file;
