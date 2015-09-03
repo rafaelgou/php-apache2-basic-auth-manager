@@ -27,7 +27,7 @@ class Passwd {
     {
         $str = '';
         foreach ($pairs as $username => $password) {
-            $str .= "$username:{SHA}$password\n";
+            $str .= "$username:$password\n";
         }
         file_put_contents($this->file, $str);
     }
@@ -38,7 +38,7 @@ class Passwd {
         $fh = fopen($this->file, 'r');
         while (!feof($fh)) {
             $pair_str = str_replace("\n", '', fgets($fh));
-            $pair_array = explode(':{SHA}', $pair_str);
+            $pair_array = explode(':', $pair_str);
             if (count($pair_array) == 2) {
                 $pairs[$pair_array[0]] = $pair_array[1];
             }
@@ -49,7 +49,7 @@ class Passwd {
     private function getHash($clearPassword = '')
     {
         if (!empty($clearPassword)) {
-            return base64_encode(sha1($clearPassword, true));
+            return password_hash($clearPassword, PASSWORD_BCRYPT);
         } else {
             return false;
         }
