@@ -102,11 +102,6 @@ class Passwd {
         }
     }
     
-    public function getClearPassword($username)
-    {
-        return strtolower(substr(sha1($username.$this->salt), 4, 12));
-    }
-    
     public function getUsersAndGroups(Group $groupHandler)
     {   
         $users = $this->read();
