@@ -33,6 +33,7 @@
                     <li><a href="userAdd.php"><i class="fa fa-user"></i> Add User</a></li>
                     <li><a href="groupAdd.php"><i class="fa fa-group"></i> Add Group</a></li>
                     <li><a href="sampleHtaccess.php"><i class="fa fa-lock"></i> Sample .htaccess</a></li>
+                    <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
             </nav>
         </div>

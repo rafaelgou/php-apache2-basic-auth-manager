@@ -42,7 +42,7 @@ to permit Basic Auth.
 They can be anywhere, but must be readable by webserver user (e.g. www-data).
 You need to create a initial admin user:
 
-    htpasswd -cs /var/www/.htpasswd superuser
+    htpasswd -cB /var/www/.htpasswd superuser
     chown www-data:www-data /var/www/.htpasswd	
 
 And the adminGroup as configured above, with this user on it:
