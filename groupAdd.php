@@ -30,6 +30,7 @@ if (isset($_POST['groupname'])) {
         $alertType    = 'success';
         $alertMessage = "Group {$_POST['groupname']} added successfuly.";
         header("Location:index.php?alertType=$alertType&message=$alertMessage");
+        exit;
     }    
 
 }
