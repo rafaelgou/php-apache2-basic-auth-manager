@@ -29,5 +29,6 @@ if (isset($_GET['username'])) {
 }
 
 header("Location:index.php?alertType=$alertType&message=$alertMessage");
+exit;
 
 
