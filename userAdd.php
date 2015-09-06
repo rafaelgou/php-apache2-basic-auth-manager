@@ -31,6 +31,7 @@ if (isset($_POST['username'])) {
         $alertType    = 'success';
         $alertMessage = "User {$_POST['username']} added successfuly.";
         header("Location:index.php?alertType=$alertType&message=$alertMessage");
+        exit;
     }    
 
 }
