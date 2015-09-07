@@ -23,3 +23,4 @@ if (isset($_GET['groupname'])) {
 }
 
 header("Location:index.php?alertType=$alertType&message=$alertMessage");
+exit;
