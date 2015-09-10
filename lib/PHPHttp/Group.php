@@ -17,7 +17,7 @@ class Group {
         if (file_exists($file)) {
             $this->file = $file;
         } else {
-            throw new \Exception($file." doesn't exist.");
+            exit($file." doesn't exist.");
         }
     }
 

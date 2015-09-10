@@ -18,8 +18,7 @@ class Passwd {
         if (file_exists($file)) {
             $this->file = $file;
         } else {
-            die($file." doesn't exist.");
-            return false;
+            exit($file." doesn't exist.");
         }
     }
 
