@@ -23,6 +23,3 @@ require group writer
     </div>
 
 <?php require_once '_footer.php'; ?>
-
-
-
