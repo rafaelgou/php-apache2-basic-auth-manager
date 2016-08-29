@@ -1,6 +1,5 @@
 <?php 
 require_once 'include.php'; 
-require_once '_header.php'; 
 
 $users = $passwdHandler->getUsers();
 ksort($users);
@@ -31,6 +30,7 @@ if (isset($_POST['groupname'])) {
 
 }
 
+require_once '_header.php'; 
 ?>
     <div class="container">
         <div class="page-header">

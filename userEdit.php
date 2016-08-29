@@ -1,6 +1,5 @@
 <?php 
 require_once 'include.php'; 
-require_once '_header.php'; 
 
 $groups = $groupHandler->getGroups();
 ksort($groups);
@@ -44,6 +43,7 @@ if (isset($_POST['username'])) {
 
 }
 
+require_once '_header.php'; 
 ?>
     <div class="container">
         <div class="page-header">
