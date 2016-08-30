@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PHP Apache2 Basic Auth Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="color: white;">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars fa-lg fa-white"></i>
+                </button>
+                <a class="navbar-brand" href="/">PHP Apache2 Basic Auth Manager</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li><a href="/user/add"><i class="fa fa-user"></i> Add User</a></li>
+                    <li><a href="/group/add"><i class="fa fa-group"></i> Add Group</a></li>
+                    <li><a href="/samplehtaccess"><i class="fa fa-lock"></i> Sample .htaccess</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <body>
+        <div class="container">
+
+            <div class="page-header">
+               <h1>{{ title }}</h1>
+            </div>
+
+            {% block alerts %}
+            {% set types = ['notice','error','success','info'] %}
+            {% for type in types %}
+                {% for flashMessage in app.session.getFlashBag.get(type) %}
+                {% if type == 'error' %}{% set type = 'danger' %}{% endif %}
+                <div class="alert alert-{{ type }}">
+                    <p>{{ flashMessage | raw }}</p>
+                </div>
+                {% endfor %}
+            {% endfor %}
+            {% endblock alerts %}
+
+            {% block content %}{% endblock content %}
+        </div>
+    </body>
+    <!-- Footer -->
+      <footer>
+        <div class="container">
+            <div class="copy">
+              <p class="author">
+                  PHP Apache2 Basic Auth Manager &copy; <?php echo date("Y"); ?> <span><a target="_blank" href="http://tech.rgou.net">Rafael Goulart</a>, <a target="_blank" href="https://daniel-ruf.de">Daniel Ruf</a></span>
+                  | Licensed under <a href="license.php">GPL3</a>
+                  | <a target="_blank" href="https://github.com/rafaelgou/php-apache2-basic-auth-manager">Fork on <i class="fa fa-github"></i> Github</a>
+              </p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </footer>
+
+      <script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+      <script type="text/javascript" src="/js/script.js"></script>
+
+      </body>
+    </html>

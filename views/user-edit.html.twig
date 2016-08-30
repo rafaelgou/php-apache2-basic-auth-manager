@@ -1,0 +1,37 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<form action="/user/{{ username }}/edit" class="form-horizontal" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <label for="username" class="col-sm-2">Username</label>
+                <p class="form-control-static col-sm-4">{{ username }}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="col-md-2">Password</label>
+                <div class="col-md-4">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Leave blank to not update ({{app.config.minPassword}} characters)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="groups" class="col-md-2">Groups</label>
+                <div class="col-md-4">
+                {% for groupname, active in groups %}
+                    <label class="checkbox-inline">
+                      <input type="checkbox" id="groups" name="groups[]" value="{{ groupname }}" {% if active %} 'checked="checked"'{% endif %}> {{ groupname }}
+                    </label>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr/>
+    <button type="submit" class="btn btn-primary">Edit User</button>
+    <a href="/" class="btn btn-link">Back to List</a>
+
+</form>
+{% endblock %}

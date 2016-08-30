@@ -1,6 +1,6 @@
-<?php 
-require_once 'include.php'; 
-require_once '_header.php'; 
+<?php
+require_once 'include.php';
+require_once '_header.php';
 
 $users = $passwdHandler->getUsersAndGroups($groupHandler);
 ksort($users);

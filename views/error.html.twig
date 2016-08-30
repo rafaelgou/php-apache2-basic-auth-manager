@@ -1,0 +1,9 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+{% if error is defined %}
+<pre>
+{{ error }}
+</pre>
+{% endif %}
+{% endblock %}

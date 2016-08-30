@@ -1,0 +1,65 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div class="row">
+
+    <div id="users" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-user"></i> USERS</div>
+            <div class="panel-body">
+                <table class="table table-striped table-rounded">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Groups</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th>{{ user.username }}</th>
+                            <th>{{ user.groups | join(', ')}}</th>
+                            <th>
+                                <a href="/user/{{ user.username }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a href="/user/{{ user.username }}/delete" data-username={{ user.username }}" class="btn btn-danger btn-xs userDelete"><i class="fa fa-times"></i></a>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="groups" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-group"></i> GROUPS</div>
+            <div class="panel-body">
+                <table class="table table-striped table-rounded">
+                    <thead>
+                        <tr>
+                            <th>Groups</th>
+                            <th>Members</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for groupname, group in groups %}
+                        <tr>
+                            <th>{{ groupname }}</th>
+                            <th>{{ group | join(', ')}}</th>
+                            <th>
+                                <a href="/group/{{ groupname }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a href="/group/{{ groupname }}/delete" data-groupname={{ groupname }}" class="btn btn-danger btn-xs groupDelete"><i class="fa fa-times"></i></a>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPHttp;
+namespace Apache2AuthManager;
 
 /**
  * Class PHPHttp/Group
@@ -9,16 +9,15 @@ namespace PHPHttp;
  * @see http://www.kavoir.com/2012/04/php-class-for-handling-htpasswd-and-htgroup-member-login-user-management.html
  */
 class Group {
-    
+
     private $file = '';
 
     public function __construct($file)
     {
-        if (file_exists($file)) {
-            $this->file = $file;
-        } else {
+        if (!file_exists($file)) {
             exit($file." doesn't exist.");
         }
+        $this->file = $file;
     }
 
     private function write($groups = array())
@@ -32,34 +31,35 @@ class Group {
                 }
                 $users_str .= $user;
             }
-            $str .= "$group: $users_str\n";
+            $str .= "{$group}: $users_str\n";
         }
         file_put_contents($this->file, $str);
     }
-    
+
     private function read()
     {
         $groups = array();
         $groups_str = file($this->file, FILE_IGNORE_NEW_LINES);
         foreach ($groups_str as $group_str) {
             if (!empty($group_str)) {
-                $group_str_array = explode(': ', $group_str);
+                $group_str_array = explode(':', $group_str);
+                $groupname = trim($group_str_array[0]);
+                $members   = trim($group_str_array[1]);
                 if (count($group_str_array) == 2) {
-                    $users_array = explode(' ', $group_str_array[1]);
-                    $groups[$group_str_array[0]] = $users_array;
+                    $groups[$groupname] = explode(' ', $members);
                 } else {
-                    $groups[$group_str_array[0]] = array();
+                    $groups[$groupname] = array();
                 }
             }
         }
         return $groups;
     }
-    
+
     public function getGroups()
     {
         return $this->read();
     }
-    
+
     public function getGroup($group)
     {
         $all = $this->read();
@@ -69,7 +69,7 @@ class Group {
             return false;
         }
     }
-    
+
     public function addUserToGroup($username, $group)
     {
         $all = $this->read();
@@ -111,8 +111,8 @@ class Group {
 
         $this->write($all);
     }
-    
-    
+
+
     public function deleteUserFromGroup($username, $group)
     {
         $all = $this->read();
@@ -153,7 +153,7 @@ class Group {
             return false;
         }
     }
-    
+
     public function deleteGroup($group)
     {
         $all = $this->read();

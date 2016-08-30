@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<pre>
+AuthName "Members Area"
+AuthType Basic
+AuthUserFile <?php echo $CONFIG['htpasswd'] ?>
+
+AuthGroupFile <?php echo $CONFIG['htgroup'] ?>
+<Limit GET POST>
+require user admin
+require group writer
+</Limit>
+</pre>
+{% endblock %}

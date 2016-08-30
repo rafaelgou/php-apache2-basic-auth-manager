@@ -1,0 +1,14 @@
+# Path to Apache2 files
+htpasswd: '/home/rafael/Dev/Rgou/.htpasswd'
+htgroups: '/home/rafael/Dev/Rgou/.htgroups'
+
+# Admin Group - only part of this group can access the system
+adminGroup: 'admin'
+
+# Restrictions
+minUsername: 4
+minPassword: 6
+minGroupname: 4
+
+# Debug
+debug: true

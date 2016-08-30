@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPHttp;
+namespace Apache2AuthManager;
 
 class Security {
 

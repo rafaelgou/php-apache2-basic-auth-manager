@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPHttp;
+namespace Apache2AuthManager;
 
 /**
  * Class PHPHttp/Passwd
@@ -9,17 +9,16 @@ namespace PHPHttp;
  * @see http://www.kavoir.com/2012/04/php-class-for-handling-htpasswd-and-htgroup-member-login-user-management.html
  */
 class Passwd {
-    
+
     private $file = '';
-    
+
     public function __construct($file)
     {
+      if (!file_exists($file)) {
+          exit($file." doesn't exist.");
+      }
+      $this->file = $file;
 
-        if (file_exists($file)) {
-            $this->file = $file;
-        } else {
-            exit($file." doesn't exist.");
-        }
     }
 
     private function write($pairs = array())
@@ -30,7 +29,7 @@ class Passwd {
         }
         file_put_contents($this->file, $str);
     }
-    
+
     private function read()
     {
         $pairs = array();
@@ -44,7 +43,7 @@ class Passwd {
         }
         return $pairs;
     }
-    
+
     private function getHash($clearPassword = '')
     {
         if (!empty($clearPassword)) {
@@ -53,12 +52,12 @@ class Passwd {
             return false;
         }
     }
-    
+
     public function getUsers()
     {
         return $this->read();
     }
-    
+
     public function addUser($username, $clearPassword)
     {
         $all = $this->read();
@@ -67,7 +66,7 @@ class Passwd {
             $this->write($all);
         }
     }
-    
+
     public function editUser($username, $clearPassword)
     {
         $all = $this->read();
@@ -76,7 +75,7 @@ class Passwd {
             $this->write($all);
         }
     }
-    
+
     public function deleteUser($username = '')
     {
         $all = $this->read();
@@ -87,7 +86,7 @@ class Passwd {
             return false;
         }
     }
-    
+
     public function userExists($username = '')
     {
         $all = $this->read();
@@ -97,9 +96,9 @@ class Passwd {
             return false;
         }
     }
-    
+
     public function getUsersAndGroups(Group $groupHandler)
-    {   
+    {
         $users = $this->read();
 
         $usersAndGroups = array();
@@ -110,10 +109,10 @@ class Passwd {
                 'password' => $password,
                 'groups'   => $groupHandler->getGroupsByUser($username),
             );
-            
+
         }
 
-        return $usersAndGroups;        
+        return $usersAndGroups;
     }
 
 }
