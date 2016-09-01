@@ -37,10 +37,11 @@ class Group extends AbstractController
 
     public function edit(Request $request, $groupname)
     {
-        $group = $this->getObject(array(
-            'groupname' => $groupname,
-            'users'     => $this->groupHandler->getGroup($groupname),
-        ));
+        $group = $this->htService->findGroup($groupname);
+        if (null === $group) {
+            throw new \Exception('Group not found', 404);
+        }
+
         $form = $this->getForm($group);
 
         if ($request->getMethod() === 'POST') {
@@ -48,7 +49,8 @@ class Group extends AbstractController
 
           if ($form->isValid()) {
               $group = $form->getData();
-              $this->groupHandler->setUsersToGroup($groupname, $group->users);
+              $group->setName($groupname);
+              $this->htService->persist($group)->write();
               $this->app['session']->getFlashBag()->add('success', "Group {$groupname} added successfuly.");
               return $this->app->redirect('/');
           }
@@ -70,12 +72,8 @@ class Group extends AbstractController
         $usernames = $this->htService->getUsernames();
         $userChoices = array_combine($usernames, $usernames);
 
-        foreach($availableUsers as $user) {
-            $userChoices[$user] = $user;
-        }
-
         return $this->app['form.factory']->createBuilder(FormType::class, $data)
-            ->add('groupname', null, array(
+            ->add('name', null, array(
                 'label' => 'Group Name',
                 'required' => true
             ))

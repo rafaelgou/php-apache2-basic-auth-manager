@@ -3,7 +3,7 @@
 {% block content %}
 <form action="/group{% if groupname is defined %}/{{ groupname }}{% endif %}/{{ action }}" class="form-horizontal" method="post">
   {% if action == 'add' %}
-    {{ form_row(form.groupname) }}
+    {{ form_row(form.name) }}
   {% endif %}
   {{ form_row(form.users) }}
 

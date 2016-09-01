@@ -41,7 +41,6 @@ class User extends AbstractController
     public function edit(Request $request, $username)
     {
         $user = $this->htService->findUser($username);
-
         if (null === $user) {
             throw new \Exception('User not found', 404);
         }

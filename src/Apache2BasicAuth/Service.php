@@ -263,7 +263,7 @@ class Service
      */
     public function getUsernames()
     {
-        return array_keys($this->getUsernames());
+        return array_keys($this->getUsers());
     }
 
     /**
