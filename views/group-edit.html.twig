@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<form action="/group{% if groupname is defined %}/{{ groupname }}{% endif %}/{{ action }}" class="form-horizontal" method="post">
+  {% if action == 'add' %}
+    {{ form_row(form.groupname) }}
+  {% endif %}
+  {{ form_row(form.users) }}
+
+  <hr/>
+  <button type="submit" class="btn btn-primary">Save</button>
+  <a href="/" class="btn btn-link">Back to List</a>
+
+</form>
+{% endblock %}

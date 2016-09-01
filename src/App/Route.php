@@ -6,6 +6,10 @@ use Silex\Application;
 
 class Route
 {
+
+    /**
+     * @var string
+     */
     protected $httpMethod;
 
     protected $path;
@@ -78,6 +82,4 @@ class Route
 
         return $this;
     }
-
-
 }

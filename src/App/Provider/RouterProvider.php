@@ -39,15 +39,16 @@ class RouterProvider implements  ServiceProviderInterface, BootableProviderInter
         $app['app.routing'] = array(
             new Route('get', '/', 'App\Controller\Main:index'),
             new Route('get', '/samplehtaccess', 'App\Controller\Main:sampleHtaccess'),
-
             new Route('get', '/user/add', 'App\Controller\User:add'),
             new Route('post', '/user/add', 'App\Controller\User:add'),
             new Route('get', '/user/{username}/edit', 'App\Controller\User:edit'),
             new Route('post', '/user/{username}/edit', 'App\Controller\User:edit'),
-            new Route('get', '/group/add', 'App\Controller\User:add'),
-            new Route('post', '/group/add', 'App\Controller\User:addSave'),
-            new Route('get', '/group/{username}/edit', 'App\Controller\User:edit'),
-            new Route('post', '/group/{username}/edit', 'App\Controller\User:editSave'),
+            new Route('get', '/user/{username}/delete', 'App\Controller\User:delete'),
+            new Route('get', '/group/add', 'App\Controller\Group:add'),
+            new Route('post', '/group/add', 'App\Controller\Group:add'),
+            new Route('get', '/group/{groupname}/edit', 'App\Controller\Group:edit'),
+            new Route('post', '/group/{groupname}/edit', 'App\Controller\Group:edit'),
+            new Route('get', '/group/{groupname}/delete', 'App\Controller\Group:delete'),
         );
     }
 
@@ -65,12 +66,12 @@ class RouterProvider implements  ServiceProviderInterface, BootableProviderInter
         }
 
         $app->error(function (\Exception $e, Request $request, $code) use ($app) {
-            switch ($code) {
+            switch ($e->getCode()) {
                 case 404:
-                    $title = 'Error 404 - The requested page could not be found.';
+                    $title = 'Error 404 - ' . $e->getMessage();
                     break;
                 default:
-                    $title = "Error $code - We are sorry, but something went terribly wrong.";
+                    $title = "Error $code - We are sorry, but something went terribly wrong. ";
             }
 
             return $app['twig']->render(

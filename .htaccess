@@ -1,0 +1,8 @@
+AuthName "Members Area"
+AuthType Basic
+AuthUserFile /home/rafael/Dev/Rgou/.htpasswd
+AuthGroupFile /home/rafael/Dev/Rgou/.htgroups
+<Limit GET POST>
+  require user admin
+  require group writer
+</Limit>

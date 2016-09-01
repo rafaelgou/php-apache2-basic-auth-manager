@@ -4,12 +4,11 @@
 <pre>
 AuthName "Members Area"
 AuthType Basic
-AuthUserFile <?php echo $CONFIG['htpasswd'] ?>
-
-AuthGroupFile <?php echo $CONFIG['htgroup'] ?>
-<Limit GET POST>
-require user admin
-require group writer
-</Limit>
+AuthUserFile /var/www/.htpasswd
+AuthGroupFile /var/www/.htgroups
+{{ '<Limit GET POST>' | escape }}
+  require user admin
+  require group writer
+{{ '</Limit>' | escape }}
 </pre>
 {% endblock %}

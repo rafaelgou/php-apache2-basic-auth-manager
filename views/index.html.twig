@@ -22,7 +22,7 @@
                             <th>{{ user.groups | join(', ')}}</th>
                             <th>
                                 <a href="/user/{{ user.username }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
-                                <a href="/user/{{ user.username }}/delete" data-username={{ user.username }}" class="btn btn-danger btn-xs userDelete"><i class="fa fa-times"></i></a>
+                                <a href="/user/{{ user.username }}/delete" data-username="{{ user.username }}" class="btn btn-danger btn-xs userDelete"><i class="fa fa-times"></i></a>
                             </th>
                         </tr>
                     {% endfor %}
@@ -45,13 +45,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for groupname, group in groups %}
+                    {% for group in groups %}
                         <tr>
-                            <th>{{ groupname }}</th>
-                            <th>{{ group | join(', ')}}</th>
+                            <th>{{ group.name }}</th>
+                            <th>{{ group.users | join(', ')}}</th>
                             <th>
-                                <a href="/group/{{ groupname }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
-                                <a href="/group/{{ groupname }}/delete" data-groupname={{ groupname }}" class="btn btn-danger btn-xs groupDelete"><i class="fa fa-times"></i></a>
+                                <a href="/group/{{ group.name }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a href="/group/{{ group.name }}/delete" data-groupname={{ group.name }}" class="btn btn-danger btn-xs groupDelete"><i class="fa fa-times"></i></a>
                             </th>
                         </tr>
                     {% endfor %}

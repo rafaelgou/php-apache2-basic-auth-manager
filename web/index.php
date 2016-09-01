@@ -10,6 +10,8 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\LocaleServiceProvider;
+use Silex\Provider\TranslationServiceProvider;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler;
 
 if (!file_exists(__DIR__ . '/../config.yml')) {
@@ -35,9 +37,19 @@ $app['debug'] = $config['debug'];
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new FormServiceProvider());
 $app->register(new ValidatorServiceProvider());
+$app->register(new FormServiceProvider());
+$app->register(new LocaleServiceProvider());
+$app->register(new TranslationServiceProvider(), array(
+    'locale_fallbacks' => array('pt_br', 'en'),
+    'translator.domains' => array(),
+));
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../views',
+    'twig.form.templates' => array(
+        'bootstrap_3_horizontal_layout.html.twig'
+    )
 ));
+
 $app->register(new SessionServiceProvider());
 // $app['session']->set('connected', 'connected');
 $app['session.storage.handler'] = new NativeFileSessionHandler(__DIR__ . '/../sessions');
