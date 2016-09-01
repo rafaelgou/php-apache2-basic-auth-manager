@@ -1,10 +1,11 @@
 <?php
-/**
- * @category Provider
- * @package  App\Provider
- * @author   Rafael Goulart <rafaelgou@gmail.com>
- * @license  Private <http://none.de>
- * @link     none
+/*
+ * This file is part of the PHP Apache2 Basic Auth Manager package.
+ *
+ * (c) Rafael Goulart <rafaelgou@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Provider;
@@ -18,20 +19,14 @@ use App\Route;
 
 /**
  * Router Provider
- *
  * @category Provider
- * @package  App\Provider
  * @author   Rafael Goulart <rafaelgou@gmail.com>
- * @license  Private <http://none.de>
- * @link     none
  */
-class RouterProvider implements  ServiceProviderInterface, BootableProviderInterface
+class RouterProvider implements ServiceProviderInterface, BootableProviderInterface
 {
     /**
      * Register
-     *
      * @param Application $app The App
-     *
      * @return void
      */
     public function register(Container $app)
@@ -54,21 +49,19 @@ class RouterProvider implements  ServiceProviderInterface, BootableProviderInter
 
     /**
      * Boot
-     *
      * @param Application $app The App
-     *
      * @return void
      */
     public function boot(Application $app)
     {
-        foreach($app['app.routing'] as $route) {
-          $route->registerRoute($app);
+        foreach ($app['app.routing'] as $route) {
+            $route->registerRoute($app);
         }
 
         $app->error(function (\Exception $e, Request $request, $code) use ($app) {
             switch ($e->getCode()) {
                 case 404:
-                    $title = 'Error 404 - ' . $e->getMessage();
+                    $title = 'Error 404 - '.$e->getMessage();
                     break;
                 default:
                     $title = "Error $code - We are sorry, but something went terribly wrong. ";
@@ -78,13 +71,9 @@ class RouterProvider implements  ServiceProviderInterface, BootableProviderInter
                 'error.html.twig',
                 array(
                     'title' => $title,
-                    'error' => $app['debug'] ? $e->getTraceAsString() : false
+                    'error' => $app['debug'] ? $e->getTraceAsString() : false,
                 )
             );
         });
-
     }
-
-
-
 }

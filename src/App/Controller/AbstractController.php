@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of the PHP Apache2 Basic Auth Manager package.
+ *
+ * (c) Rafael Goulart <rafaelgou@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace App\Controller;
 
@@ -42,7 +50,7 @@ abstract class AbstractController
      */
     protected function renderTemplate($template, $data = array())
     {
-        return $this->app['twig']->render($template . '.html.twig', $data);
+        return $this->app['twig']->render("{$template}.html.twig", $data);
     }
 
     /**

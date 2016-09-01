@@ -30,6 +30,9 @@
         "escapestudios/symfony2-coding-standard": "^2.9"
     },
     "scripts": {
-        "phpcs": ["./vendor/bin/phpcs --standard=Symfony2 src/Apache2BasicAuth"]
+        "phpcs": [
+          "./vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard",
+          "./vendor/bin/phpcs --standard=Symfony2 src"
+        ]
     }
 }

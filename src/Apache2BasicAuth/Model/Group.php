@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the PHP Apache2 Basic Auth Manager package.
+ * This file is part of the PHP Apache2 Basic Auth package.
  *
  * (c) Rafael Goulart <rafaelgou@gmail.com>
  *
@@ -12,8 +12,7 @@ namespace Apache2BasicAuth\Model;
 
 /**
  * Group Model
- *
- * @class
+ * @author Rafael Goulart <rafaelgou@gmail.com>
  */
 class Group
 {
@@ -34,8 +33,8 @@ class Group
      */
     public function __construct($name = null, array $users = array())
     {
-        $this->name  = $name;
-        $this->users = $users;
+        $this->setName($name);
+        $this->setUsers($users);
     }
 
     /**
@@ -45,7 +44,7 @@ class Group
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = strtolower(preg_replace('~[^A-Za-z0-9?.!]~', '', $name));
 
         return $this;
     }
@@ -133,5 +132,4 @@ class Group
 
         return "{$this->getName()}: {$users}";
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the PHP Apache2 Basic Auth Manager package.
+ * This file is part of the PHP Apache2 Basic Auth package.
  *
  * (c) Rafael Goulart <rafaelgou@gmail.com>
  *
@@ -12,8 +12,8 @@ namespace Apache2BasicAuth\Model;
 
 /**
  * User Model
- *
  * @class
+ * @author Rafael Goulart <rafaelgou@gmail.com>
  */
 class User
 {
@@ -45,8 +45,8 @@ class User
      */
     public function __construct($username = null, array $groups = array(), $password = null)
     {
-        $this->username = $username;
-        $this->groups   = $groups;
+        $this->setUsername($username);
+        $this->setGroups($groups);
         $this->setPassword($password);
     }
 
@@ -57,7 +57,7 @@ class User
      */
     public function setUsername($username)
     {
-        $this->username = $username;
+        $this->username = strtolower(preg_replace('~[^A-Za-z0-9?.!]~', '', $username));
 
         return $this;
     }

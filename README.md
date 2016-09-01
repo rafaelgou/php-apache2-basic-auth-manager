@@ -5,6 +5,9 @@ A really simple manager for .htaccess Basic Auth using .htpasswd and .htgroup fi
 Original HtPasswd and HtGroup classes from
 [Yang Yang](http://www.kavoir.com/2012/04/php-class-for-handling-htpasswd-and-htgroup-member-login-user-management.html)
 
+## TODO
+
+Constraints (Validations)
 
 ## Install
 

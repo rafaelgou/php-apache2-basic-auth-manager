@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of the PHP Apache2 Basic Auth Manager package.
+ *
+ * (c) Rafael Goulart <rafaelgou@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -51,9 +59,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $app->register(new SessionServiceProvider());
-// $app['session']->set('connected', 'connected');
 $app['session.storage.handler'] = new NativeFileSessionHandler(__DIR__ . '/../sessions');
-// echo $app['session']->get('user', 'nothing');
 
 /**
  * Load Routes

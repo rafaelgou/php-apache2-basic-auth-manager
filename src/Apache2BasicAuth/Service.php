@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the PHP Apache2 Basic Auth Manager package.
+ * This file is part of the PHP Apache2 Basic Auth package.
  *
  * (c) Rafael Goulart <rafaelgou@gmail.com>
  *
@@ -15,8 +15,7 @@ use Apache2BasicAuth\Model\User;
 
 /**
  * HT Service
- *
- * @class
+ * @author Rafael Goulart <rafaelgou@gmail.com>
  */
 class Service
 {
@@ -51,8 +50,7 @@ class Service
         if (!file_exists($passwdFile)) {
             throw new \Exception(".htpasswd file doesn't exist", 500);
         }
-        if (
-            null !== $groupFile
+        if (null !== $groupFile
             && !empty($groupFile)
             && !file_exists($passwdFile)
             ) {
@@ -229,7 +227,7 @@ class Service
         if (array_key_exists($group->getName(), $this->groups)) {
             unset($this->groups[$group->getName()]);
         }
-        foreach($this->getUsers() as $user) {
+        foreach ($this->getUsers() as $user) {
             $user->removeGroup($group->getName());
         }
 
@@ -243,9 +241,9 @@ class Service
      */
     public function findGroup($groupname)
     {
-      return array_key_exists($groupname, $this->groups)
-          ? clone $this->groups[$groupname]
-          : null;
+        return array_key_exists($groupname, $this->groups)
+            ? clone $this->groups[$groupname]
+            : null;
     }
 
     /**
@@ -315,9 +313,9 @@ class Service
         if (null !== $old) {
             foreach ($old->getGroups() as $groupname) {
                 if (!$user->hasGroup($groupname)) {
-                  $group = $this->findGroup($groupname);
-                  $group->removeUser($user->getUsername());
-                  $this->groups[$groupname] = $group;
+                    $group = $this->findGroup($groupname);
+                    $group->removeUser($user->getUsername());
+                    $this->groups[$groupname] = $group;
                 }
             }
         }
@@ -352,8 +350,8 @@ class Service
     /**
      * Create a user instance and persists to collection
      * @param string $username Username
-     * @param string $password User password
      * @param array  $groups   Groups
+     * @param string $password User password
      * @return Apache2BasicAuth\Service
      */
     public function createUser($username = null, array $groups = array(), $password = null)
@@ -410,5 +408,4 @@ class Service
 
         return $groups;
     }
-
 }
