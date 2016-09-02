@@ -17,6 +17,9 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints as Assert;
+use Apache2BasicAuth\Model\User as UserModel;
+use Respect\Validation\Validator as V;
 
 /**
  * Class User Controller
@@ -62,6 +65,7 @@ class User extends AbstractController
      * Edit a record
      * @param Request $request  The HTTP Request
      * @param string  $username User name
+     * @throws \Exception User not found
      * @return Response
      */
     public function edit(Request $request, $username)
@@ -72,6 +76,7 @@ class User extends AbstractController
         }
 
         $form = $this->getForm($user);
+        $validator = false;
 
         if ($request->getMethod() === 'POST') {
             $form->handleRequest($request);
@@ -79,6 +84,7 @@ class User extends AbstractController
             if ($form->isValid()) {
                 $user = $form->getData();
                 $user->setUsername($username);
+
                 if ($user->getPassword() > 0) {
                     if (strlen($user->getPassword()) < $config['minPassword']) {
                         $this->app['session']->getFlashBag()->add(
@@ -89,10 +95,12 @@ class User extends AbstractController
                         return $this->app->redirect("/user/{$username}/edit");
                     }
                 }
-                $this->htService->persist($user)->write();
-                $this->app['session']->getFlashBag()->add('success', "User {$username} updated successfuly.");
+                if (!$validator->validate($user)) {
+                  $this->htService->persist($user)->write();
+                  $this->app['session']->getFlashBag()->add('success', "User {$username} updated successfuly.");
 
-                return $this->app->redirect('/');
+                  return $this->app->redirect('/');
+                }
             }
         }
 
@@ -111,6 +119,7 @@ class User extends AbstractController
      * Delete a record
      * @param Request $request  The HTTP Request
      * @param string  $username User name
+     * @throws \Exception User not found
      * @return Response
      */
     public function delete(Request $request, $username)
@@ -154,4 +163,5 @@ class User extends AbstractController
             ))
             ->getForm();
     }
+
 }

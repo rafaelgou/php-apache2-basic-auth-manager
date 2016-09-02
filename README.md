@@ -1,89 +1,96 @@
 # PHP Apache2 Basic Auth Manager
 
-A really simple manager for .htaccess Basic Auth using .htpasswd and .htgroup files.
+A really simple manager for .htaccess Basic Auth using .htpasswd and .htgroups
+files.
 
-Original HtPasswd and HtGroup classes from
-[Yang Yang](http://www.kavoir.com/2012/04/php-class-for-handling-htpasswd-and-htgroup-member-login-user-management.html)
+Uses the
+[PHP Apache2 Basic Auth](https://github.com/rafaelgou/php-apache2-basic-auth)
+lib.
 
-## TODO
+![Screenshot](screenshot.png)
 
-Constraints (Validations)
 
 ## Install
 
 1) Clone the repository under a web:
 
-Considering you have a Apache Web Server running with ServerRoot= /var/www
+Considering you have a Apache Web Server running with ServerRoot= `/var/www`.
 
-    cd /var/www
-    git clone https://github.com/rafaelgou/php-apache2-basic-auth-manager.git
-
+```bash
+cd /var/www
+git clone https://github.com/rafaelgou/php-apache2-basic-auth-manager.git
+```
 
 2) Configure the application
 
-    cd php-apache2-basic-auth-manager
-    cp config-dist.yml config.yml
-    chown -R www-data:www-data *
+```bash
+cd php-apache2-basic-auth-manager
+cp config-dist.yml config.yml
+chown -R www-data:www-data *
+```
 
 (or whatever user your webserver is running under).
 
-Edit `config.yml` using your favorite editor, and be sure to point to the right paths for
-`.htpasswd`  and `.htgroup` files.
+Edit `config.yml` using your favorite editor, and be sure to point to the
+right paths for `.htpasswd`  and `.htgroups` files.
 
 ```yml
+# Base URL
+baseUrl: http://localhost/php-apache2-basic-auth-manager
+
 # Path to Apache2 files
 htpasswd: '/home/rafael/Dev/Rgou/.htpasswd'
 htgroups: '/home/rafael/Dev/Rgou/.htgroups'
 
-# Admin Group - only part of this group can access the system
-adminGroup: 'admin'
-
-# Restrictions
-minUsername: 4
-minPassword: 6
-minGroupname: 4
-
 # Debug
-debug: true
+debug: false
 ```
-
-Pay attention to `adminGroup = 'admin';` entry, you'll need that on the following steps.
 
 3) Apache config
 
 The system directory must have:
 
-    AllowOverride All
+```apache2
+AllowOverride All
+```
 
 to permit Basic Auth.
 
-4) Create `.htpasswd` and `.htgroup` files
+4) Create `.htpasswd` and `.htgroups` files
 
 They can be anywhere, but must be readable by webserver user (e.g. www-data).
 You need to create a initial admin user:
 
-    htpasswd -cB /var/www/.htpasswd superuser
-    chown www-data:www-data /var/www/.htpasswd
+```bash
+htpasswd -cB /var/www/.htpasswd superuser
+chown www-data:www-data /var/www/.htpasswd
+```
 
-And the adminGroup as configured above, with this user on it:
 
-    echo 'admin: superuser' > /var/www/.htgroup
-    chown www-data:www-data /var/www/.htgroup
+
+```bash
+echo 'admin: superuser' > /var/www/.htgroups
+chown www-data:www-data /var/www/.htgroups
+```
 
 5) Create .htaccess file for the system
 
-   cd php-apache2-basic-auth-manager
+```bash
+cd php-apache2-basic-auth-manager
+```
 
 Edit `.htaccess` using your favorite editor, and put the following content
 
 ```apache
-    AuthName "Members Area"
-    AuthType Basic
-    AuthUserFile /var/www/.htpasswd
-    AuthGroupFile /var/www/.htgroup
-    <Limit GET POST>
-        require group admin
-    </Limit>
+AuthName "Members Area"
+AuthType Basic
+AuthUserFile /var/www/.htpasswd
+AuthGroupFile /var/www/.htgroups
+<Limit GET POST>
+    require group admin
+    # or
+    # require user superuser
+</Limit>
 ```
 
 6) Now you can access

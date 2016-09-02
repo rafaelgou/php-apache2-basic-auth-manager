@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<form action="/group{% if groupname is defined %}/{{ groupname }}{% endif %}/{{ action }}" class="form-horizontal" method="post">
+<form action="{{baseUrl}}/group{% if groupname is defined %}/{{ groupname }}{% endif %}/{{ action }}" class="form-horizontal" method="post">
   {% if action == 'add' %}
     {{ form_row(form.name) }}
   {% endif %}
@@ -9,7 +9,7 @@
 
   <hr/>
   <button type="submit" class="btn btn-primary">Save</button>
-  <a href="/" class="btn btn-link">Back to List</a>
+  <a href="{{baseUrl}}/" class="btn btn-link">Back to List</a>
 
 </form>
 {% endblock %}

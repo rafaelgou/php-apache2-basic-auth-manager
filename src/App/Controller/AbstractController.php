@@ -50,6 +50,8 @@ abstract class AbstractController
      */
     protected function renderTemplate($template, $data = array())
     {
+        $data['baseUrl'] = $this->app['config']['baseUrl'];
+
         return $this->app['twig']->render("{$template}.html.twig", $data);
     }
 

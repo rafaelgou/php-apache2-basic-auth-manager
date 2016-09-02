@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5bdca99fadf93c4903777ce8c577cc24",
-    "content-hash": "3352c9fba7b6d8a55d65dd4aa02defdd",
+    "hash": "a2a4b47bfc4b5fee94fca40600948a3d",
+    "content-hash": "a69617ad15a8b2d8d66ec1ca51b6c2a7",
     "packages": [
         {
             "name": "paragonie/random_compat",
@@ -138,6 +138,44 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "rafaelgou/php-apache2-basic-auth",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rafaelgou/php-apache2-basic-auth.git",
+                "reference": "36dbf3047996a7478dba603f0fde8f2168e6bc86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rafaelgou/php-apache2-basic-auth/zipball/36dbf3047996a7478dba603f0fde8f2168e6bc86",
+                "reference": "36dbf3047996a7478dba603f0fde8f2168e6bc86",
+                "shasum": ""
+            },
+            "require-dev": {
+                "cvuorinen/phpdoc-markdown-public": "^0.1.2",
+                "escapestudios/symfony2-coding-standard": "^2.9"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "": "src/",
+                    "Apache2BasicAuth\\": "Apache2BasicAuth/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Goulart",
+                    "email": "rafaelgou@gmail.com"
+                }
+            ],
+            "description": "PHP Apache2 Basic Auth",
+            "time": "2016-09-01 18:53:02"
         },
         {
             "name": "silex/silex",
@@ -1421,16 +1459,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.24.1",
+            "version": "v1.24.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512"
+                "reference": "33093f6e310e6976baeac7b14f3a6ec02f2d79b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3566d311a92aae4deec6e48682dc5a4528c4a512",
-                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/33093f6e310e6976baeac7b14f3a6ec02f2d79b7",
+                "reference": "33093f6e310e6976baeac7b14f3a6ec02f2d79b7",
                 "shasum": ""
             },
             "require": {
@@ -1478,7 +1516,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-05-30 09:11:59"
+            "time": "2016-09-01 17:50:53"
         }
     ],
     "packages-dev": [
@@ -1530,16 +1568,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.6.2",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4edb770cb853def6e60c93abb088ad5ac2010c83"
+                "reference": "571e27b6348e5b3a637b2abc82ac0d01e6d7bbed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4edb770cb853def6e60c93abb088ad5ac2010c83",
-                "reference": "4edb770cb853def6e60c93abb088ad5ac2010c83",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/571e27b6348e5b3a637b2abc82ac0d01e6d7bbed",
+                "reference": "571e27b6348e5b3a637b2abc82ac0d01e6d7bbed",
                 "shasum": ""
             },
             "require": {
@@ -1604,7 +1642,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2016-07-13 23:29:13"
+            "time": "2016-09-01 23:53:02"
         }
     ],
     "aliases": [],

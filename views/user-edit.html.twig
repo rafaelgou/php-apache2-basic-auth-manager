@@ -1,15 +1,15 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<form action="/user{% if username is defined %}/{{ username }}{% endif %}/{{ action }}" class="form-horizontal" method="post">
-    {% if action == 'add' %}
-      {{ form_row(form.username) }}
-    {% endif %}
-    {{ form_row(form.password) }}
-    {{ form_row(form.groups) }}
-    <hr/>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a href="/" class="btn btn-link">Back to List</a>
+<form action="{{baseUrl}}/user{% if username is defined %}/{{ username }}{% endif %}/{{ action }}" class="form-horizontal" method="post">
+  {% if action == 'add' %}
+    {{ form_row(form.username) }}
+  {% endif %}
+  {{ form_row(form.password) }}
+  {{ form_row(form.groups) }}
+  <hr/>
+  <button type="submit" class="btn btn-primary">Save</button>
+  <a href="{{baseUrl}}/" class="btn btn-link">Back to List</a>
 
 </form>
 {% endblock %}

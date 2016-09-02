@@ -1,14 +1,9 @@
+# Base URL
+baseUrl: http://localhost/php-apache2-basic-auth-manager
+
 # Path to Apache2 files
 htpasswd: '/var/www/.htpasswd'
 htgroups: '/var/www/.htgroup'
 
-# Admin Group - only part of this group can access the system
-adminGroup: 'admin'
-
-# Restrictions
-minUsername: 4
-minPassword: 6
-minGroupname: 4
-
 # Debug
-debug: true
+debug: false

@@ -12,8 +12,7 @@
     "autoload": {
       "psr-4": {
         "": "src/",
-        "App\\": "App/",
-        "Apache2BasicAuth\\": "Apache2BasicAuth/"
+        "App\\": "App/"
       }
     },
     "require": {
@@ -24,7 +23,8 @@
         "symfony/twig-bridge": "^3.1",
         "symfony/translation": "^3.1",
         "symfony/validator": "^3.1",
-        "symfony/config": "^3.1"
+        "symfony/config": "^3.1",
+        "rafaelgou/php-apache2-basic-auth": "^1.0"
     },
     "require-dev": {
         "escapestudios/symfony2-coding-standard": "^2.9"

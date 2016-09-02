@@ -60,6 +60,7 @@ class Group extends AbstractController
      * Edit a record
      * @param Request $request   The HTTP Request
      * @param string  $groupname Group name
+     * @throws \Exception User not found
      * @return Response
      */
     public function edit(Request $request, $groupname)
@@ -99,6 +100,7 @@ class Group extends AbstractController
      * Delete a record
      * @param Request $request   The HTTP Request
      * @param string  $groupname Group name
+     * @throws \Exception User not found
      * @return Response
      */
     public function delete(Request $request, $groupname)

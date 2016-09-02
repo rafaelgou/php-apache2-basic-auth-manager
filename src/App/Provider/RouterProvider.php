@@ -58,22 +58,24 @@ class RouterProvider implements ServiceProviderInterface, BootableProviderInterf
             $route->registerRoute($app);
         }
 
-        $app->error(function (\Exception $e, Request $request, $code) use ($app) {
-            switch ($e->getCode()) {
-                case 404:
-                    $title = 'Error 404 - '.$e->getMessage();
-                    break;
-                default:
-                    $title = "Error $code - We are sorry, but something went terribly wrong. ";
-            }
+        if (!$app['config']['debug']) {
+            $app->error(function (\Exception $e, Request $request, $code) use ($app) {
+                switch ($e->getCode()) {
+                    case 404:
+                        $title = 'Error 404 - '.$e->getMessage();
+                        break;
+                    default:
+                        $title = "Error $code - We are sorry, but something went terribly wrong. ";
+                }
 
-            return $app['twig']->render(
-                'error.html.twig',
-                array(
-                    'title' => $title,
-                    'error' => $app['debug'] ? $e->getTraceAsString() : false,
-                )
-            );
-        });
+                return $app['twig']->render(
+                    'error.html.twig',
+                    array(
+                        'title' => $title,
+                        'error' => $app['debug'] ? $e->getTraceAsString() : false,
+                    )
+                );
+            });
+        }
     }
 }

@@ -1,3 +1,4 @@
 config.yml
 /vendor/
+build/
 sessions/*
