@@ -76,7 +76,7 @@ class User extends AbstractController
         }
 
         $form = $this->getForm($user);
-        $validator = false;
+        #$validator = false;
 
         if ($request->getMethod() === 'POST') {
             $form->handleRequest($request);
@@ -95,12 +95,12 @@ class User extends AbstractController
                         return $this->app->redirect("/user/{$username}/edit");
                     }
                 }
-                if (!$validator->validate($user)) {
+                #if (!$validator->validate($user)) {
                   $this->htService->persist($user)->write();
                   $this->app['session']->getFlashBag()->add('success', "User {$username} updated successfuly.");
 
                   return $this->app->redirect('/');
-                }
+                #}
             }
         }
 
