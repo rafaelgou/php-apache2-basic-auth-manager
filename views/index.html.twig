@@ -21,8 +21,8 @@
                             <th>{{ user.username }}</th>
                             <th>{{ user.groups | join(', ')}}</th>
                             <th>
-                                <a href="/user/{{ user.username }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
-                                <a href="/user/{{ user.username }}/delete" data-username="{{ user.username }}" class="btn btn-danger btn-xs userDelete"><i class="fa fa-times"></i></a>
+                                <a href="{{baseUrl}}/user/{{ user.username }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a href="{{baseUrl}}/user/{{ user.username }}/delete" data-username="{{ user.username }}" class="btn btn-danger btn-xs userDelete"><i class="fa fa-times"></i></a>
                             </th>
                         </tr>
                     {% endfor %}
@@ -50,8 +50,8 @@
                             <th>{{ group.name }}</th>
                             <th>{{ group.users | join(', ')}}</th>
                             <th>
-                                <a href="/group/{{ group.name }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
-                                <a href="/group/{{ group.name }}/delete" data-groupname={{ group.name }}" class="btn btn-danger btn-xs groupDelete"><i class="fa fa-times"></i></a>
+                                <a href="{{baseUrl}}/group/{{ group.name }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a href="{{baseUrl}}/group/{{ group.name }}/delete" data-groupname={{ group.name }}" class="btn btn-danger btn-xs groupDelete"><i class="fa fa-times"></i></a>
                             </th>
                         </tr>
                     {% endfor %}
