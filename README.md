@@ -14,17 +14,21 @@ lib.
 
 1) Clone the repository under a web:
 
-Considering you have a Apache Web Server running with ServerRoot= `/var/www`.
+Considering you have a Apache Web Server running with `DocumentRoot /var/www/web`.
+Notes:
+* The subdirectory named `web` must be served.
+* [Composer must be installed](https://getcomposer.org/download/) and in [`$PATH` (UNIX) or `%PATH%` (Windows)](https://getcomposer.org/doc/00-intro.md).
 
 ```bash
 cd /var/www
 git clone https://github.com/rafaelgou/php-apache2-basic-auth-manager.git
+cd php-apache2-basic-auth-manager
+composer install
 ```
 
 2) Configure the application
 
 ```bash
-cd php-apache2-basic-auth-manager
 cp config-dist.yml config.yml
 chown -R www-data:www-data *
 ```
