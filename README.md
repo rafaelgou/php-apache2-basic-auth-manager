@@ -25,7 +25,7 @@ git clone https://github.com/rafaelgou/php-apache2-basic-auth-manager.git
 
 ```bash
 cd php-apache2-basic-auth-manager
-cp config-dist.yml config.yml
+cp config.yml.dist config.yml
 chown -R www-data:www-data *
 ```
 
