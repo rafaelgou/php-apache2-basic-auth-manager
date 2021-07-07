@@ -141,16 +141,16 @@
         },
         {
             "name": "rafaelgou/php-apache2-basic-auth",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rafaelgou/php-apache2-basic-auth.git",
-                "reference": "36dbf3047996a7478dba603f0fde8f2168e6bc86"
+                "reference": "4061e16feb5197e7386e983e4df3716d128f4a48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rafaelgou/php-apache2-basic-auth/zipball/36dbf3047996a7478dba603f0fde8f2168e6bc86",
-                "reference": "36dbf3047996a7478dba603f0fde8f2168e6bc86",
+                "url": "https://api.github.com/repos/rafaelgou/php-apache2-basic-auth/zipball/4061e16feb5197e7386e983e4df3716d128f4a48",
+                "reference": "4061e16feb5197e7386e983e4df3716d128f4a48",
                 "shasum": ""
             },
             "require-dev": {
